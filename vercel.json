@@ -1,1 +1,1 @@
-﻿{"installCommand":"npm install && chmod -R 755 node_modules/.bin","buildCommand":"./node_modules/.bin/vite build","outputDirectory":"dist","rewrites":[{"source":"/(.*)?","destination":"/index.html"}]}
+﻿{"rewrites":[{"source":"/(.*)","destination":"/index.html"}]}
