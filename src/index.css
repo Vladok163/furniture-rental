@@ -364,3 +364,151 @@ textarea.form-input { resize: vertical; min-height: 72px; }
 .autocomplete-item:last-child { border-bottom: none; }
 .autocomplete-item:hover { background: var(--bg); }
 .autocomplete-item-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+/* ===================== MOBILE ===================== */
+@media (max-width: 768px) {
+  :root { --sidebar: 0px; }
+
+  /* Боковое меню скрываем */
+  .sidebar {
+    top: auto; left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: 64px;
+    flex-direction: row;
+    justify-content: space-around;
+    border-right: none;
+    border-top: 1px solid var(--border);
+    padding: 0;
+    z-index: 200;
+  }
+
+  .sidebar-logo { display: none; }
+
+  .nav-item {
+    flex: 1;
+    height: 64px;
+    width: auto;
+    border-radius: 0;
+    font-size: 11px;
+    gap: 2px;
+  }
+
+  .nav-item svg { width: 24px; height: 24px; }
+
+  /* Основной контент */
+  .main-content {
+    margin-left: 0;
+    padding-bottom: 64px;
+  }
+
+  .page-header {
+    padding: 0 16px;
+    height: 56px;
+  }
+
+  .page-title { font-size: 18px; }
+
+  .page-body {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  /* Статистика — 2 колонки */
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .stat-card { padding: 14px 16px; }
+  .stat-value { font-size: 26px; }
+  .stat-label { font-size: 12px; }
+
+  /* Таблицы → карточки */
+  .table-wrap table { display: none; }
+
+  /* Карточки заказов для мобайла */
+  .mobile-cards { display: flex; flex-direction: column; gap: 10px; }
+
+  .mobile-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mobile-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .mobile-card-name { font-size: 17px; font-weight: 600; }
+  .mobile-card-phone { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+  .mobile-card-amount { font-size: 20px; font-weight: 700; }
+  .mobile-card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  /* Форма заказа */
+  .form-row-2 { grid-template-columns: 1fr; gap: 12px; }
+  .form-row-3 { grid-template-columns: 1fr; }
+
+  .modal {
+    padding: 20px 16px;
+    max-height: 95vh;
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+
+  .modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal-title { font-size: 20px; }
+  .total-amount { font-size: 26px; }
+
+  .qty-item { padding: 12px 14px; }
+  .qty-item-name { font-size: 16px; }
+  .qty-btn { width: 42px; height: 42px; font-size: 24px; }
+  .qty-num { font-size: 20px; }
+
+  /* Инвентарь */
+  .inv-grid { grid-template-columns: 1fr; gap: 12px; }
+  .inv-num-val { font-size: 28px; }
+
+  /* Клиенты — стек вместо flex */
+  .page-body[style*="flex-direction: row"] {
+    flex-direction: column !important;
+  }
+
+  /* Календарь */
+  .cal-day { min-height: 44px; padding: 4px 2px; }
+  .cal-day-num { font-size: 13px; }
+
+  /* Поиск */
+  .search-input { width: 100%; }
+  .search-wrap { width: 100%; }
+
+  /* Кнопка добавить */
+  .btn svg { width: 16px; height: 16px; }
+  .page-header .btn span { display: none; }
+}
+
+/* Clients layout */
+.clients-layout { flex-direction: row; align-items: flex-start; }
+@media (max-width: 768px) {
+  .clients-layout { flex-direction: column !important; }
+  .clients-layout > div:first-child { flex: none !important; width: 100% !important; }
+  .mobile-cards { display: flex !important; }
+  .table-wrap table { display: none !important; }
+}
+@media (min-width: 769px) {
+  .mobile-cards { display: none; }
+}

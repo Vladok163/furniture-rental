@@ -60,7 +60,7 @@ export default function Clients() {
       <div className="page-header">
         <span className="page-title">Клиенты</span>
       </div>
-      <div className="page-body" style={{ flexDirection: 'row', gap: 20, alignItems: 'flex-start' }}>
+      <div className="page-body clients-layout">
         {/* LEFT: client list */}
         <div style={{ flex: '0 0 340px', display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div className="search-wrap">

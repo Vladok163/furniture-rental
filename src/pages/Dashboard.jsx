@@ -132,6 +132,33 @@ export default function Dashboard() {
             {loading ? <div className="empty">Загрузка...</div> : activeOrders.length === 0 ? (
               <div className="empty">Нет активных заказов</div>
             ) : (
+              <>
+              <div className="mobile-cards" style={{padding:'10px'}}>
+                {activeOrders.map(o => {
+                  const rest = (o.total_amount||0) - (o.prepayment||0)
+                  return (
+                    <div key={o.id+'m'} className="mobile-card">
+                      <div className="mobile-card-top">
+                        <div>
+                          <div className="mobile-card-name">{o.clients?.name}</div>
+                          <div className="mobile-card-phone">{o.clients?.phone}</div>
+                        </div>
+                        <div className="mobile-card-amount">{(o.total_amount||0).toLocaleString('ru-RU')} ₽</div>
+                      </div>
+                      <div className="mobile-card-row">
+                        <span style={{fontSize:14,color:'var(--text-muted)'}}>{itemsSummary(o)}</span>
+                        <span style={{color:rest>0?'var(--amber)':'var(--green)',fontWeight:600,fontSize:14}}>
+                          {rest>0?`Ост. ${rest.toLocaleString('ru-RU')} ₽`:'✓'}
+                        </span>
+                      </div>
+                      <div className="mobile-card-row">
+                        <span>{format(parseISO(o.start_date),'d MMM',{locale:ru})} – {format(parseISO(o.end_date),'d MMM',{locale:ru})}</span>
+                        {statusBadge(o)}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
               <div className="table-wrap">
                 <table>
                   <thead>
@@ -168,6 +195,7 @@ export default function Dashboard() {
                   </tbody>
                 </table>
               </div>
+              </>
             )}
           </div>
         </div>

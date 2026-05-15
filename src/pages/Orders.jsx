@@ -74,6 +74,33 @@ export default function Orders() {
           {loading ? <div className="empty">Загрузка...</div> : filtered.length === 0 ? (
             <div className="empty">Нет заказов</div>
           ) : (
+            <>
+            <div className="mobile-cards" style={{padding:'10px'}}>
+              {filtered.map(o => {
+                const rest = (o.total_amount||0) - (o.prepayment||0)
+                return (
+                  <div key={o.id+'m'} className="mobile-card" onClick={() => { setEditOrder(o); setShowModal(true) }}>
+                    <div className="mobile-card-top">
+                      <div>
+                        <div className="mobile-card-name">{o.clients?.name}</div>
+                        <div className="mobile-card-phone">{o.clients?.phone}</div>
+                      </div>
+                      <div className="mobile-card-amount">{(o.total_amount||0).toLocaleString('ru-RU')} ₽</div>
+                    </div>
+                    <div className="mobile-card-row">
+                      <span>{itemsSummary(o)}</span>
+                      {statusBadge(o)}
+                    </div>
+                    <div className="mobile-card-row">
+                      <span>{format(parseISO(o.start_date),'d MMM',{locale:ru})} – {format(parseISO(o.end_date),'d MMM',{locale:ru})}</span>
+                      <span style={{color:rest>0?'var(--amber)':'var(--green)',fontWeight:600}}>
+                        {rest>0?`Остаток ${rest.toLocaleString('ru-RU')} ₽`:'✓ Оплачен'}
+                      </span>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
             <div className="table-wrap">
               <table>
                 <thead>
@@ -121,6 +148,7 @@ export default function Orders() {
                 </tbody>
               </table>
             </div>
+            </>
           )}
         </div>
       </div>
